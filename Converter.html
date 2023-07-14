@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    /* Reset default styles */
+body, h1, h2, form, label, input, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color and default text styles */
+body {
+  background-color: #f1f1f1;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Style the header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 24px;
+}
+
+/* Style the sections */
+section {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px;
+}
+
+section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Style the form */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input[type="number"] {
+  padding: 5px;
+  width: 100px;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Style the result */
+p#result {
+  margin-top: 10px;
+  font-size: 18px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Temperature Converter</h1>
+  </header>
+
+  <section>
+    <h2>Convert Celsius to Fahrenheit</h2>
+    <form id="temp-form">
+      <label for="celsius">Celsius:</label>
+      <input type="number" id="celsius" required>
+
+      <input type="submit" value="Convert">
+    </form>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    // Get form element and result paragraph
+const form = document.getElementById('temp-form');
+const result = document.getElementById('result');
+
+// Celsius to Fahrenheit conversion function
+function celsiusToFahrenheit(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
+// Event listener for form submission
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent page reload on form submission
+
+  // Get the Celsius value from the input field
+  const celsiusInput = document.getElementById('celsius');
+  const celsius = parseFloat(celsiusInput.value);
+
+  // Check if a valid number was entered
+  if (!isNaN(celsius)) {
+    const fahrenheit = celsiusToFahrenheit(celsius);
+    result.textContent = `${celsius}°C is equal to ${fahrenheit.toFixed(2)}°F`;
+  } else {
+    result.textContent = 'Please enter a valid number';
+  }
+});
+  </script>
+</body>
+</html>
